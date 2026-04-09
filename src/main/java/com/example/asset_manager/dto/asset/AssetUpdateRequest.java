@@ -1,5 +1,6 @@
 package com.example.asset_manager.dto.asset;
 
+import com.example.asset_manager.validation.NoJapaneseCharacters;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -9,6 +10,7 @@ public class AssetUpdateRequest {
 
     @NotBlank(message = "Asset tag is required.")
     @Size(max = 255, message = "Asset tag must be 255 characters or fewer.")
+    @NoJapaneseCharacters
     private String assetTag;
 
     @NotNull(message = "Serial number is required.")
@@ -17,10 +19,12 @@ public class AssetUpdateRequest {
 
     @NotBlank(message = "Model is required.")
     @Size(max = 255, message = "Model must be 255 characters or fewer.")
+    @NoJapaneseCharacters
     private String model;
 
     @NotBlank(message = "CPU is required.")
     @Size(max = 255, message = "CPU must be 255 characters or fewer.")
+    @NoJapaneseCharacters
     private String cpuAmt;
 
     @NotNull(message = "RAM is required.")
@@ -32,9 +36,11 @@ public class AssetUpdateRequest {
     private Integer storageAmt;
 
     @NotBlank(message = "Unit status is required.")
+    @NoJapaneseCharacters
     private String unitStatus;
 
     @Size(max = 500, message = "Image URL must be 500 characters or fewer.")
+    @NoJapaneseCharacters
     private String imageUrl;
 
     public String getAssetTag() { return assetTag; }

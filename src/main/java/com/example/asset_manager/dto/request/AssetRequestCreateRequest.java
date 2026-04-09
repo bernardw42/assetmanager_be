@@ -1,5 +1,6 @@
 package com.example.asset_manager.dto.request;
 
+import com.example.asset_manager.validation.NoJapaneseCharacters;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -10,15 +11,18 @@ public class AssetRequestCreateRequest {
 
     @NotBlank(message = "Request type is required.")
     @Pattern(regexp = "^(LOAN|EXCHANGE)$", message = "Request type must be LOAN or EXCHANGE.")
+    @NoJapaneseCharacters
     private String requestType; // LOAN / EXCHANGE
 
     @Size(max = 255, message = "Minimum CPU must be 255 characters or fewer.")
+    @NoJapaneseCharacters
     private String minCpuAmt;
     @Positive(message = "Minimum RAM must be greater than 0.")
     private Integer minRamAmt;
     @Positive(message = "Minimum storage must be greater than 0.")
     private Integer minStorageAmt;
     @Size(max = 1000, message = "Reason must be 1000 characters or fewer.")
+    @NoJapaneseCharacters
     private String reason;
 
     @NotNull(message = "Employee is required.")

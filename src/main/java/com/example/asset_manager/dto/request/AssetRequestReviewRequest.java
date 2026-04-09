@@ -1,5 +1,6 @@
 package com.example.asset_manager.dto.request;
 
+import com.example.asset_manager.validation.NoJapaneseCharacters;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -15,9 +16,11 @@ public class AssetRequestReviewRequest {
 
     @NotBlank(message = "Decision is required.")
     @Pattern(regexp = "^(APPROVED|REJECTED)$", message = "Decision must be APPROVED or REJECTED.")
+    @NoJapaneseCharacters
     private String decision; // APPROVED / REJECTED
 
     @Size(max = 1000, message = "Review comment must be 1000 characters or fewer.")
+    @NoJapaneseCharacters
     private String reviewComment;
 
     public Long getRequestId() { return requestId; }
